@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { Note, Category } from "@/store/notes";
 import api from "@/lib/api";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 interface NoteEditorProps {
   note?: Note | null;
@@ -30,8 +31,10 @@ export default function NoteEditor({ note, categories, onClose, onSave }: NoteEd
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [lastSaved, setLastSaved] = useState(note?.updated_at || new Date().toISOString());
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef, () => setIsDropdownOpen(false));
+  useFocusTrap(editorRef, true);
 
   const currentCategory = categories.find((c) => c.id === categoryId) || categories[0];
 
@@ -90,7 +93,7 @@ export default function NoteEditor({ note, categories, onClose, onSave }: NoteEd
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
       <div className="absolute inset-0 bg-bg-app/90" onClick={onClose} />
 
-      <div className="relative w-full max-w-4xl flex flex-col gap-3">
+      <div ref={editorRef} className="relative w-full max-w-4xl flex flex-col gap-3" role="dialog" aria-modal="true" aria-label="Note editor">
         <div className="flex items-center justify-between">
           <div className="relative" ref={dropdownRef}>
             <button
