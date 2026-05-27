@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-app: #FAF3E8;
+  --color-bg-card-random: #F4C2A1;
+  --color-border-card-random: #E8A87C;
+  --color-bg-card-school: #F9E4B7;
+  --color-border-card-school: #E8D5A3;
+  --color-bg-card-personal: #B5D0C5;
+  --color-border-card-personal: #9EBDB0;
+  --color-bg-card-drama: #D4D4AA;
+  --color-border-card-drama: #C2C295;
+  --color-dot-random: #E07A5F;
+  --color-dot-school: #F4D35E;
+  --color-dot-personal: #81B29A;
+  --color-dot-drama: #B7B868;
+  --color-text-primary: #5C3D2E;
+  --color-text-secondary: #8B6F5C;
+  --color-text-link: #A67B5B;
+  --color-text-title: #3D2B1F;
+  --color-btn-border: #C4A882;
+  --color-btn-text: #8B5E3C;
+  --color-btn-filled-bg: #C4A882;
+  --color-input-border: #D4C5B0;
+  --color-header-login: #6200EE;
+  --color-sidebar-active: #F0E6D6;
+  --color-placeholder: #A09387;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #FAF3E8;
+  color: #5C3D2E;
+  font-family: var(--font-sans);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #A09387;
+}
+
+/* Custom scrollbar for a polished feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #D4C5B0;
+  border-radius: 4px;
+}
