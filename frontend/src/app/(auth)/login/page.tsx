@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 import { useAuthStore } from "@/store/auth";
 import CactusIllustration from "@/components/illustrations/CactusIllustration";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuthStore();
@@ -47,13 +49,21 @@ export default function LoginPage() {
         />
         <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-[#D4C5B0] bg-white/70 text-[#5C3D2E] placeholder:text-[#A09387] focus:outline-none focus:ring-2 focus:ring-[#C4A882]/60 text-sm"
+            className="w-full px-4 py-3 pr-10 rounded-lg border border-[#D4C5B0] bg-white/70 text-[#5C3D2E] placeholder:text-[#A09387] focus:outline-none focus:ring-2 focus:ring-[#C4A882]/60 text-sm"
             required
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8B6F5C] hover:text-[#5C3D2E] transition-colors"
+            tabIndex={-1}
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
         </div>
 
         {error && (
